@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run prebuild && npx tsc -p tsconfig.build.json",
-    "prebuild": "rimraf dist",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "start": "node dist/main",
     "start:dev": "ts-node-dev -r tsconfig-paths/register src/main.ts",
     "start:prod": "node dist/main"
