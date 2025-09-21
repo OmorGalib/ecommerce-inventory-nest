@@ -1,8 +1,10 @@
 {
-"scripts": {
-    "build": "rimraf dist && tsc -p tsconfig.build.json",
+  "scripts": {
+    "build": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
     "start": "node dist/main",
-    "start:dev": "ts-node-dev -r tsconfig-paths/register src/main.ts",
     "start:prod": "node dist/main"
+  },
+  "dependencies": {
+    "rimraf": "^6.0.1"
   }
 }
