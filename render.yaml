@@ -1,0 +1,36 @@
+services:
+  - type: web
+    name: ecommerce-inventory
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: DB_HOST
+        fromDatabase:
+          name: ecommerce-db
+          property: host
+      - key: DB_PORT
+        value: 5432
+      - key: DB_USERNAME
+        fromDatabase:
+          name: ecommerce-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: ecommerce-db
+          property: password
+      - key: DB_NAME
+        fromDatabase:
+          name: ecommerce-db
+          property: database
+
+databases:
+  - name: ecommerce-db
+    plan: free
+    databaseName: ecommerce_inventory
+    user: postgres
