@@ -4,23 +4,19 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 @Controller()
 export class AppController {
   @Get()
-  @ApiOperation({ summary: 'Health check endpoint' })
+  @ApiOperation({ summary: 'API Health Check' })
   @ApiResponse({ status: 200, description: 'API is running' })
-  getHello(): { message: string; status: string } {
+  getHello(): { message: string; timestamp: string; status: string } {
     return {
       message: 'E-commerce Inventory API is running',
-      status: 'OK',
+      timestamp: new Date().toISOString(),
+      status: 'OK'
     };
   }
 
   @Get('health')
   @ApiOperation({ summary: 'Health check endpoint' })
-  @ApiResponse({ status: 200, description: 'API is running' })
-  healthCheck(): { message: string; status: string; timestamp: string } {
-    return {
-      message: 'E-commerce Inventory API is running',
-      status: 'OK',
-      timestamp: new Date().toISOString(),
-    };
+  healthCheck(): { status: string } {
+    return { status: 'OK' };
   }
 }

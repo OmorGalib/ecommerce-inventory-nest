@@ -29,9 +29,12 @@ async function bootstrap() {
   // Enable CORS
   app.enableCors();
 
+  // Use Render's port or default to 3000
   const port = process.env.PORT || 3000;
-  await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}`);
-  console.log(`API Documentation: http://localhost:${port}/api/docs`);
+  
+  await app.listen(port, '0.0.0.0', () => {  // <- Add this line
+    console.log(`Application is running on: http://0.0.0.0:${port}`);
+    console.log(`API Documentation: http://0.0.0.0:${port}/api/docs`);
+  });
 }
 bootstrap();
